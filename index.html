@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>For Zyan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="locked">
+
+  <!-- ================= LANDING ================= -->
+  <div id="landing" class="landing">
+    <div class="landing-glow"></div>
+    <div class="landing-content" id="landingContent">
+      <p class="landing-text">ada sesuatu buat kamu<span class="dots">...</span></p>
+      <button id="openBtn" class="btn-open" aria-label="Buka">
+        <span>Open</span>
+      </button>
+    </div>
+
+    <svg class="crack-overlay" id="crackOverlay" viewBox="0 0 400 800" preserveAspectRatio="none" aria-hidden="true">
+      <g id="crackLines" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.4" stroke-linecap="round">
+        <path d="M200,400 L120,180" />
+        <path d="M200,400 L260,90" />
+        <path d="M200,400 L60,320" />
+        <path d="M200,400 L40,520" />
+        <path d="M200,400 L150,700" />
+        <path d="M200,400 L260,650" />
+        <path d="M200,400 L340,480" />
+        <path d="M200,400 L330,260" />
+        <path d="M120,180 L90,120" />
+        <path d="M260,90 L300,60" />
+        <path d="M60,320 L20,300" />
+        <path d="M340,480 L375,510" />
+        <path d="M150,700 L110,740" />
+        <path d="M260,650 L300,700" />
+      </g>
+    </svg>
+
+    <div class="impact-flash" id="impactFlash"></div>
+
+    <div class="shard shard-0" data-tx="122%" data-ty="70%" data-rot="-16deg" data-delay="0ms"></div>
+    <div class="shard shard-1" data-tx="0%" data-ty="140%" data-rot="12deg" data-delay="35ms"></div>
+    <div class="shard shard-2" data-tx="-122%" data-ty="70%" data-rot="-11deg" data-delay="15ms"></div>
+    <div class="shard shard-3" data-tx="-122%" data-ty="-70%" data-rot="17deg" data-delay="55ms"></div>
+    <div class="shard shard-4" data-tx="0%" data-ty="-140%" data-rot="-14deg" data-delay="25ms"></div>
+    <div class="shard shard-5" data-tx="122%" data-ty="-70%" data-rot="20deg" data-delay="65ms"></div>
+  </div>
+
+  <!-- ================= CAKE ================= -->
+  <section id="cake-section" class="cake-section">
+    <div class="cake-enter" id="cakeEnter">
+    <p class="section-kicker">tiup lilinnya, satu-satu</p>
+    <div class="cake-wrap">
+      <div class="cake" id="cake">
+        <div class="candle-row" id="candleRow">
+          <div class="candle" data-lit="true">
+            <div class="flame"></div>
+            <div class="wick"></div>
+            <div class="stick"></div>
+          </div>
+          <div class="candle" data-lit="true">
+            <div class="flame"></div>
+            <div class="wick"></div>
+            <div class="stick"></div>
+          </div>
+          <div class="candle" data-lit="true">
+            <div class="flame"></div>
+            <div class="wick"></div>
+            <div class="stick"></div>
+          </div>
+          <div class="candle" data-lit="true">
+            <div class="flame"></div>
+            <div class="wick"></div>
+            <div class="stick"></div>
+          </div>
+          <div class="candle" data-lit="true">
+            <div class="flame"></div>
+            <div class="wick"></div>
+            <div class="stick"></div>
+          </div>
+        </div>
+        <div class="cake-top">
+          <div class="drip"></div>
+        </div>
+        <div class="cake-middle"></div>
+        <div class="cake-bottom"></div>
+        <div class="cake-plate"></div>
+      </div>
+    </div>
+    <p class="cake-status" id="cakeStatus">sentuh setiap lilin untuk mematikannya</p>
+    </div>
+  </section>
+
+  <!-- ================= MINI SPOTIFY ================= -->
+  <section id="player-section" class="player-section">
+    <p class="section-kicker reveal">this your favorite songg</p>
+
+    <div class="player-card reveal">
+      <div class="player-top">
+        <div class="player-cover">
+          <img id="trackCover" src="assets/images/cover/cover-1.jpeg" alt="Sampul lagu">
+        </div>
+        <div class="player-meta">
+          <p class="player-title" id="trackTitle">Shout Out</p>
+          <p class="player-artist" id="trackArtist">ENHYPEN</p>
+        </div>
+      </div>
+
+      <div class="player-progress">
+        <span class="time time-current" id="curTime">0:00</span>
+        <input type="range" id="seek" class="seek" value="0" min="0" max="100" step="0.1">
+        <span class="time time-duration" id="durTime">0:00</span>
+      </div>
+
+      <div class="player-controls">
+        <button class="ctrl-btn" id="prevBtn" aria-label="Sebelumnya">
+          <svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg>
+        </button>
+        <button class="ctrl-btn play-btn" id="playBtn" aria-label="Putar">
+          <svg viewBox="0 0 24 24" id="playIcon"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <button class="ctrl-btn" id="nextBtn" aria-label="Berikutnya">
+          <svg viewBox="0 0 24 24"><path d="M16 6h2v12h-2zM6 6l8.5 6L6 18z"/></svg>
+        </button>
+      </div>
+
+      <ul class="track-list" id="trackList">
+        <li class="track-item active" data-index="0">
+          <img src="assets/images/cover/cover-1.jpeg" alt="">
+          <div class="track-item-meta">
+            <span class="track-item-title">Shout Out</span>
+            <span class="track-item-artist">ENHYPEN</span>
+          </div>
+          <span class="track-item-icon" aria-hidden="true"></span>
+        </li>
+        <li class="track-item" data-index="1">
+          <img src="assets/images/cover/cover-2.jpeg" alt="">
+          <div class="track-item-meta">
+            <span class="track-item-title">Bite Me</span>
+            <span class="track-item-artist">ENHYPEN</span>
+          </div>
+          <span class="track-item-icon" aria-hidden="true"></span>
+        </li>
+        <li class="track-item" data-index="2">
+          <img src="assets/images/cover/cover-3.jpeg" alt="">
+          <div class="track-item-meta">
+            <span class="track-item-title">Loose</span>
+            <span class="track-item-artist">ENHYPEN</span>
+          </div>
+          <span class="track-item-icon" aria-hidden="true"></span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= GALLERY ================= -->
+  <section id="gallery-section" class="gallery-section">
+    <p class="section-kicker reveal">Gatau tapi ini pacall kamuu</p>
+    <div class="gallery-grid">
+      <figure class="gallery-item gi-1"><img src="assets/images/jungwon/jungwon-1.jpeg" alt="Jungwon" loading="lazy"></figure>
+      <figure class="gallery-item gi-2"><img src="assets/images/jungwon/jungwon-2.jpeg" alt="Jungwon" loading="lazy"></figure>
+      <figure class="gallery-item gi-3"><img src="assets/images/jungwon/jungwon-3.jpeg" alt="Jungwon" loading="lazy"></figure>
+      <figure class="gallery-item gi-4"><img src="assets/images/jungwon/jungwon-4.jpeg" alt="Jungwon" loading="lazy"></figure>
+      <figure class="gallery-item gi-5"><img src="assets/images/jungwon/jungwon-5.jpeg" alt="Jungwon" loading="lazy"></figure>
+      <figure class="gallery-item gi-6"><img src="assets/images/jungwon/jungwon-6.jpeg" alt="Jungwon" loading="lazy"></figure>
+      <figure class="gallery-item gi-7"><img src="assets/images/jungwon/jungwon-7.jpeg" alt="Jungwon" loading="lazy"></figure>
+    </div>
+  </section>
+
+  <!-- ================= UCAPAN TERAKHIR (STORYBOOK) ================= -->
+  <section id="letter-section" class="letter-section">
+    <div class="letter-page">
+      <!--
+        ================================================================
+        GANTI TEKS DI BAWAH INI DENGAN UCAPANMU SENDIRI.
+        Setiap baris <p class="letter-line"> akan muncul perlahan
+        satu per satu saat halaman ini di-scroll. Tambah/kurangi
+        baris sesuai kebutuhan, formatnya akan tetap konsisten.
+        ================================================================
+      -->
+      <p class="letter-line letter-open">Untuk Zyan,</p>
+      <p class="letter-line"> Happy birthday yaa cantikk </p>
+      <p class="letter-line"> Semoga panjang umurnya sehat selaluu </p>
+      <p class="letter-line"> dann semoga kamu tetep di kelilingi orang² baikk ya, aminn</p>
+      <p class="letter-line letter-sign">RipkyPr0d</p>
+
+      <div class="letter-divider" aria-hidden="true"></div>
+
+      <h2 class="final-greeting letter-line">Selamat ulang tahun, Zyannnnn.</h2>
+    </div>
+  </section>
+
+  <audio id="bgAudio" src="assets/music/sempurna.mp3" loop preload="auto"></audio>
+  <audio id="trackAudio" preload="auto"></audio>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
