@@ -1,202 +1,298 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>For Zyan</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
-</head>
-<body class="locked">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#eef6ff">
+  <title>Untuk Zyan</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🌸%3C/text%3E%3C/svg%3E">
 
-  <!-- ================= LANDING ================= -->
-  <div id="landing" class="landing">
-    <div class="landing-glow"></div>
-    <div class="landing-content" id="landingContent">
-      <p class="landing-text">ada sesuatu buat kamu<span class="dots">...</span></p>
-      <button id="openBtn" class="btn-open" aria-label="Buka">
-        <span>Open</span>
-      </button>
+  <!-- Font (butuh internet). Kalau offline, website otomatis pakai font bawaan HP. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/script.js" defer></script>
+  <noscript><style>[hidden]{display:block !important}.reveal{opacity:1 !important;transform:none !important}#landing,#cake{display:none !important}</style></noscript>
+</head>
+
+<body>
+
+  <!-- =====================================================
+       SPRITE SVG (bunga, kelopak, daun, ikon)
+       Dipakai lewat <use href="#nama">. Tidak butuh file gambar.
+       ===================================================== -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="flower" viewBox="-50 -50 100 100">
+        <g style="fill:var(--petal,#fff);stroke:var(--petal-stroke,#a9c7e8)" stroke-width="1.6" stroke-linejoin="round">
+          <ellipse cx="0" cy="-21" rx="12.5" ry="21"/>
+          <ellipse cx="0" cy="-21" rx="12.5" ry="21" transform="rotate(72)"/>
+          <ellipse cx="0" cy="-21" rx="12.5" ry="21" transform="rotate(144)"/>
+          <ellipse cx="0" cy="-21" rx="12.5" ry="21" transform="rotate(216)"/>
+          <ellipse cx="0" cy="-21" rx="12.5" ry="21" transform="rotate(288)"/>
+        </g>
+        <circle r="8.5" fill="#ffe3a3" stroke="#f0c36c" stroke-width="1.4"/>
+        <circle cx="-2.4" cy="-2.4" r="2" fill="#fff" opacity=".75"/>
+      </symbol>
+
+      <symbol id="petal" viewBox="0 0 20 28">
+        <path d="M10 1C18 9 20 18 10 27C0 18 2 9 10 1Z" style="fill:var(--petal,#dcebfb);stroke:var(--petal-stroke,#b4cfec)" stroke-width="1"/>
+        <path d="M10 6V22" stroke="#fff" stroke-opacity=".6" stroke-width="1" fill="none"/>
+      </symbol>
+
+      <symbol id="leaf" viewBox="0 0 40 20">
+        <path d="M1 10C10 -1 30 -1 39 10C30 21 10 21 1 10Z" style="fill:var(--leaf,#c6dccf);stroke:#a9c7b6" stroke-width="1"/>
+        <path d="M4 10H35" stroke="#a9c7b6" stroke-width="1" fill="none"/>
+      </symbol>
+
+      <symbol id="flower-cluster" viewBox="0 0 240 240">
+        <use href="#leaf" x="8" y="118" width="96" height="48" transform="rotate(-38 56 142)"/>
+        <use href="#leaf" x="118" y="12" width="90" height="45" transform="rotate(58 163 34)"/>
+        <use href="#leaf" x="70" y="150" width="86" height="43" transform="rotate(18 113 171)"/>
+        <use href="#flower" x="46" y="46" width="134" height="134" style="--petal:#fff"/>
+        <use href="#flower" x="8" y="6" width="80" height="80" style="--petal:#dcebfb"/>
+        <use href="#flower" x="150" y="38" width="66" height="66" style="--petal:#cfe3f8"/>
+        <use href="#flower" x="122" y="142" width="56" height="56" style="--petal:#fff"/>
+      </symbol>
+
+      <!-- ikon -->
+      <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></symbol>
+      <symbol id="i-pause" viewBox="0 0 24 24"><g fill="currentColor"><rect x="6.5" y="5" width="4" height="14" rx="1.3"/><rect x="13.5" y="5" width="4" height="14" rx="1.3"/></g></symbol>
+      <symbol id="i-prev" viewBox="0 0 24 24"><g fill="currentColor"><path d="M5.5 5.5a1 1 0 0 1 2 0v13a1 1 0 0 1-2 0z"/><path d="M19 6.4v11.2a1 1 0 0 1-1.6.8L9.6 12.8a1 1 0 0 1 0-1.6l7.8-5.6a1 1 0 0 1 1.6.8z"/></g></symbol>
+      <symbol id="i-next" viewBox="0 0 24 24"><g fill="currentColor"><path d="M16.5 5.5a1 1 0 0 1 2 0v13a1 1 0 0 1-2 0z"/><path d="M5 6.4v11.2a1 1 0 0 0 1.6.8l7.8-5.6a1 1 0 0 0 0-1.6L6.6 5.6A1 1 0 0 0 5 6.4z"/></g></symbol>
+      <symbol id="i-volume" viewBox="0 0 24 24"><path fill="currentColor" d="M4 9.5v5h3.5l4.3 3.6a.8.8 0 0 0 1.2-.6V6.5a.8.8 0 0 0-1.2-.6L7.5 9.5z"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M15.8 9.2a4 4 0 0 1 0 5.6M18.4 6.6a7.5 7.5 0 0 1 0 10.8"/></symbol>
+      <symbol id="i-mute" viewBox="0 0 24 24"><path fill="currentColor" d="M4 9.5v5h3.5l4.3 3.6a.8.8 0 0 0 1.2-.6V6.5a.8.8 0 0 0-1.2-.6L7.5 9.5z"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M16 9.5l5 5M21 9.5l-5 5"/></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></symbol>
+      <symbol id="i-left" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M15 5l-7 7 7 7"/></symbol>
+      <symbol id="i-right" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></symbol>
+      <symbol id="i-down" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 9l7 7 7-7"/></symbol>
+      <symbol id="i-expand" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" d="M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7"/></symbol>
+      <symbol id="i-note" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M9 18V6.5l10-2V16"/><circle cx="6.5" cy="18" r="2.5" fill="currentColor"/><circle cx="16.5" cy="16" r="2.5" fill="currentColor"/></symbol>
+    </defs>
+  </svg>
+
+
+  <!-- =====================================================
+       1. LANDING
+       ===================================================== -->
+  <section id="landing" class="landing" aria-labelledby="landing-title">
+    <div class="petal-layer" aria-hidden="true"></div>
+
+    <div class="landing-decor" aria-hidden="true">
+      <svg class="flora flora-tl"><use href="#flower-cluster"/></svg>
+      <svg class="flora flora-br"><use href="#flower-cluster"/></svg>
+      <svg class="lone lone-a"><use href="#flower" style="--petal:#e6f1fd"/></svg>
+      <svg class="lone lone-b"><use href="#flower" style="--petal:#fff"/></svg>
     </div>
 
-    <svg class="crack-overlay" id="crackOverlay" viewBox="0 0 400 800" preserveAspectRatio="none" aria-hidden="true">
-      <g id="crackLines" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.4" stroke-linecap="round">
-        <path d="M200,400 L120,180" />
-        <path d="M200,400 L260,90" />
-        <path d="M200,400 L60,320" />
-        <path d="M200,400 L40,520" />
-        <path d="M200,400 L150,700" />
-        <path d="M200,400 L260,650" />
-        <path d="M200,400 L340,480" />
-        <path d="M200,400 L330,260" />
-        <path d="M120,180 L90,120" />
-        <path d="M260,90 L300,60" />
-        <path d="M60,320 L20,300" />
-        <path d="M340,480 L375,510" />
-        <path d="M150,700 L110,740" />
-        <path d="M260,650 L300,700" />
-      </g>
-    </svg>
+    <div class="landing-content">
+      <h1 id="landing-title" class="landing-title enter" style="--d:350">Ada sesuatu<br>buat kamu...</h1>
+      <button id="open-btn" class="btn btn-open enter" style="--d:1100" type="button">Open</button>
+    </div>
+  </section>
 
-    <div class="impact-flash" id="impactFlash"></div>
 
-    <div class="shard shard-0" data-tx="122%" data-ty="70%" data-rot="-16deg" data-delay="0ms"></div>
-    <div class="shard shard-1" data-tx="0%" data-ty="140%" data-rot="12deg" data-delay="35ms"></div>
-    <div class="shard shard-2" data-tx="-122%" data-ty="70%" data-rot="-11deg" data-delay="15ms"></div>
-    <div class="shard shard-3" data-tx="-122%" data-ty="-70%" data-rot="17deg" data-delay="55ms"></div>
-    <div class="shard shard-4" data-tx="0%" data-ty="-140%" data-rot="-14deg" data-delay="25ms"></div>
-    <div class="shard shard-5" data-tx="122%" data-ty="-70%" data-rot="20deg" data-delay="65ms"></div>
+  <!-- =====================================================
+       2. BIRTHDAY CAKE
+       ===================================================== -->
+  <section id="cake" class="cake" aria-labelledby="cake-title" hidden>
+    <h2 id="cake-title" class="cake-title cake-in" style="--d:0">Tiup lilinnya dulu 🎂</h2>
+    <p id="cake-hint" class="cake-hint cake-in" style="--d:120">Jangan lupa make a wish 🤍</p>
+
+    <div class="cake-stage cake-in" style="--d:240">
+      <svg id="cake-svg" class="cake-svg" viewBox="0 0 320 300" role="img" aria-label="Kue ulang tahun dengan lima lilin menyala">
+        <defs>
+          <linearGradient id="g-flame" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="0" stop-color="#ff9d4d"/><stop offset=".55" stop-color="#ffc766"/><stop offset="1" stop-color="#ffeaa9"/>
+          </linearGradient>
+          <linearGradient id="g-sponge" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#fff7e6"/><stop offset="1" stop-color="#fbe8c6"/>
+          </linearGradient>
+          <linearGradient id="g-frost" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#f1f7ff"/><stop offset="1" stop-color="#cfe3f8"/>
+          </linearGradient>
+          <pattern id="p-dots" width="14" height="12" patternUnits="userSpaceOnUse">
+            <circle cx="7" cy="6" r="2" fill="#fff" opacity=".85"/>
+          </pattern>
+        </defs>
+
+        <!-- piring -->
+        <ellipse cx="160" cy="277" rx="146" ry="14" fill="#d3e3f4"/>
+        <ellipse cx="160" cy="272" rx="138" ry="11" fill="#f5faff" stroke="#c6dcf1" stroke-width="1.5"/>
+
+        <!-- tingkat bawah -->
+        <rect x="46" y="194" width="228" height="76" rx="14" fill="url(#g-sponge)" stroke="#ead6b2" stroke-width="1.5"/>
+        <g fill="url(#g-frost)">
+          <rect x="64" y="204" width="16" height="32" rx="8"/>
+          <rect x="116" y="204" width="14" height="22" rx="7"/>
+          <rect x="176" y="204" width="16" height="36" rx="8"/>
+          <rect x="230" y="204" width="14" height="25" rx="7"/>
+          <rect x="44" y="188" width="232" height="26" rx="13"/>
+        </g>
+        <rect x="46" y="246" width="228" height="12" fill="#7aa7d9"/>
+        <rect x="46" y="246" width="228" height="12" fill="url(#p-dots)"/>
+        <use href="#flower" x="62" y="240" width="24" height="24" style="--petal:#fff"/>
+        <use href="#flower" x="118" y="240" width="24" height="24" style="--petal:#e6f1fd"/>
+        <use href="#flower" x="178" y="240" width="24" height="24" style="--petal:#fff"/>
+        <use href="#flower" x="234" y="240" width="24" height="24" style="--petal:#e6f1fd"/>
+
+        <!-- tingkat atas -->
+        <rect x="88" y="130" width="144" height="66" rx="12" fill="url(#g-sponge)" stroke="#ead6b2" stroke-width="1.5"/>
+        <g fill="url(#g-frost)">
+          <rect x="104" y="140" width="13" height="28" rx="6.5"/>
+          <rect x="150" y="140" width="12" height="18" rx="6"/>
+          <rect x="200" y="140" width="14" height="30" rx="7"/>
+          <rect x="86" y="124" width="148" height="24" rx="12"/>
+        </g>
+
+        <!-- lilin (lima) -->
+        <g class="candle" style="--i:0"><rect x="105.5" y="94" width="9" height="36" rx="3" fill="#fff" stroke="#b9d2ec" stroke-width="1.4"/><path d="M105.5 106l9-5M105.5 116l9-5M105.5 126l9-5" stroke="#7aa7d9" stroke-width="1.6" fill="none"/><path d="M110 94v-6" stroke="#6d5a4a" stroke-width="1.4"/><g transform="translate(110 88)"><path class="smoke" d="M0 0C-5-8 5-14 0-22" fill="none" stroke="#b5c3d3" stroke-width="2" stroke-linecap="round"/><g class="flame-lean"><g class="flame"><circle cy="-11" r="14" fill="#ffd98a" opacity=".26"/><path d="M0-24C6-15 8-8 4-2C2 1-2 1-4-2C-8-8-6-15 0-24Z" fill="url(#g-flame)"/><path d="M0-13C3-9 3.5-5 0-2C-3.5-5-3-9 0-13Z" fill="#fff8dc" opacity=".9"/></g></g></g></g>
+        <g class="candle" style="--i:1"><rect x="130.5" y="94" width="9" height="36" rx="3" fill="#fff" stroke="#b9d2ec" stroke-width="1.4"/><path d="M130.5 106l9-5M130.5 116l9-5M130.5 126l9-5" stroke="#7aa7d9" stroke-width="1.6" fill="none"/><path d="M135 94v-6" stroke="#6d5a4a" stroke-width="1.4"/><g transform="translate(135 88)"><path class="smoke" d="M0 0C-5-8 5-14 0-22" fill="none" stroke="#b5c3d3" stroke-width="2" stroke-linecap="round"/><g class="flame-lean"><g class="flame"><circle cy="-11" r="14" fill="#ffd98a" opacity=".26"/><path d="M0-24C6-15 8-8 4-2C2 1-2 1-4-2C-8-8-6-15 0-24Z" fill="url(#g-flame)"/><path d="M0-13C3-9 3.5-5 0-2C-3.5-5-3-9 0-13Z" fill="#fff8dc" opacity=".9"/></g></g></g></g>
+        <g class="candle" style="--i:2"><rect x="155.5" y="94" width="9" height="36" rx="3" fill="#fff" stroke="#b9d2ec" stroke-width="1.4"/><path d="M155.5 106l9-5M155.5 116l9-5M155.5 126l9-5" stroke="#7aa7d9" stroke-width="1.6" fill="none"/><path d="M160 94v-6" stroke="#6d5a4a" stroke-width="1.4"/><g transform="translate(160 88)"><path class="smoke" d="M0 0C-5-8 5-14 0-22" fill="none" stroke="#b5c3d3" stroke-width="2" stroke-linecap="round"/><g class="flame-lean"><g class="flame"><circle cy="-11" r="14" fill="#ffd98a" opacity=".26"/><path d="M0-24C6-15 8-8 4-2C2 1-2 1-4-2C-8-8-6-15 0-24Z" fill="url(#g-flame)"/><path d="M0-13C3-9 3.5-5 0-2C-3.5-5-3-9 0-13Z" fill="#fff8dc" opacity=".9"/></g></g></g></g>
+        <g class="candle" style="--i:3"><rect x="180.5" y="94" width="9" height="36" rx="3" fill="#fff" stroke="#b9d2ec" stroke-width="1.4"/><path d="M180.5 106l9-5M180.5 116l9-5M180.5 126l9-5" stroke="#7aa7d9" stroke-width="1.6" fill="none"/><path d="M185 94v-6" stroke="#6d5a4a" stroke-width="1.4"/><g transform="translate(185 88)"><path class="smoke" d="M0 0C-5-8 5-14 0-22" fill="none" stroke="#b5c3d3" stroke-width="2" stroke-linecap="round"/><g class="flame-lean"><g class="flame"><circle cy="-11" r="14" fill="#ffd98a" opacity=".26"/><path d="M0-24C6-15 8-8 4-2C2 1-2 1-4-2C-8-8-6-15 0-24Z" fill="url(#g-flame)"/><path d="M0-13C3-9 3.5-5 0-2C-3.5-5-3-9 0-13Z" fill="#fff8dc" opacity=".9"/></g></g></g></g>
+        <g class="candle" style="--i:4"><rect x="205.5" y="94" width="9" height="36" rx="3" fill="#fff" stroke="#b9d2ec" stroke-width="1.4"/><path d="M205.5 106l9-5M205.5 116l9-5M205.5 126l9-5" stroke="#7aa7d9" stroke-width="1.6" fill="none"/><path d="M210 94v-6" stroke="#6d5a4a" stroke-width="1.4"/><g transform="translate(210 88)"><path class="smoke" d="M0 0C-5-8 5-14 0-22" fill="none" stroke="#b5c3d3" stroke-width="2" stroke-linecap="round"/><g class="flame-lean"><g class="flame"><circle cy="-11" r="14" fill="#ffd98a" opacity=".26"/><path d="M0-24C6-15 8-8 4-2C2 1-2 1-4-2C-8-8-6-15 0-24Z" fill="url(#g-flame)"/><path d="M0-13C3-9 3.5-5 0-2C-3.5-5-3-9 0-13Z" fill="#fff8dc" opacity=".9"/></g></g></g></g>
+      </svg>
+    </div>
+
+    <div class="cake-actions cake-in" style="--d:360">
+      <p id="cake-status" class="cake-status" role="status" aria-live="polite"></p>
+      <button id="candle-btn" class="btn btn-soft" type="button" hidden>Matikan lilin ✨</button>
+    </div>
+
+    <svg class="scroll-cue" aria-hidden="true"><use href="#i-down"/></svg>
+  </section>
+
+
+  <!-- =====================================================
+       3. BIRTHDAY MESSAGE
+       ===================================================== -->
+  <section id="birthday" class="section birthday" aria-labelledby="birthday-title" hidden>
+    <div class="petal-layer" aria-hidden="true"></div>
+    <div class="wrap wrap-narrow">
+      <svg class="birthday-flower floaty" aria-hidden="true"><use href="#flower" style="--petal:#fff"/></svg>
+      <h2 id="birthday-title" class="birthday-title reveal">Selamat ulang tahun, Zyan</h2>
+      <!-- ✏️ Ganti ucapan di bawah sesuai keinginanmu -->
+      <p class="birthday-text reveal" style="--i:1">Semoga hari ini terasa ringan, penuh tawa, dan dikelilingi orang-orang yang sayang sama kamu.</p>
+      <p class="birthday-text reveal" style="--i:2">Aku siapin beberapa hal kecil di bawah ini. Gulir pelan-pelan ya.</p>
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       4. MINI MUSIC PLAYER
+       ===================================================== -->
+  <section id="music" class="section music" aria-labelledby="music-title" hidden>
+    <div class="wrap">
+      <h2 id="music-title" class="section-title reveal">Lagu buat kamu</h2>
+      <p class="section-sub reveal" style="--i:1">Tekan play, musik latar akan mengecil sendiri.</p>
+
+      <div id="player" class="player reveal" style="--i:2">
+        <div class="player-now">
+          <div class="player-cover">
+            <img id="pl-cover" alt="Cover lagu">
+            <svg class="player-cover-empty" aria-hidden="true"><use href="#i-note"/></svg>
+          </div>
+
+          <div class="player-meta">
+            <h3 id="pl-title" class="player-title">—</h3>
+            <p id="pl-artist" class="player-artist">—</p>
+            <p id="pl-status" class="player-status" role="status" aria-live="polite"></p>
+          </div>
+
+          <div class="player-progress">
+            <input id="pl-progress" class="range" type="range" min="0" max="1000" value="0" step="1" aria-label="Posisi lagu">
+            <div class="player-times"><span id="pl-current">0:00</span><span id="pl-duration">0:00</span></div>
+          </div>
+
+          <div class="player-controls">
+            <button id="pl-prev" class="ctrl" type="button" aria-label="Lagu sebelumnya"><svg class="ico"><use href="#i-prev"/></svg></button>
+            <button id="pl-play" class="ctrl ctrl-main" type="button" aria-label="Putar">
+              <svg class="ico ico-play"><use href="#i-play"/></svg>
+              <svg class="ico ico-pause"><use href="#i-pause"/></svg>
+            </button>
+            <button id="pl-next" class="ctrl" type="button" aria-label="Lagu berikutnya"><svg class="ico"><use href="#i-next"/></svg></button>
+          </div>
+
+          <div class="player-volume">
+            <button id="pl-mute" class="ctrl ctrl-small" type="button" aria-label="Bisukan">
+              <svg class="ico ico-vol"><use href="#i-volume"/></svg>
+              <svg class="ico ico-muted"><use href="#i-mute"/></svg>
+            </button>
+            <input id="pl-volume" class="range" type="range" min="0" max="100" value="80" step="1" aria-label="Volume">
+          </div>
+        </div>
+
+        <ol id="pl-list" class="playlist" aria-label="Daftar lagu"></ol>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       5. JUNGWON GALLERY (7 foto)
+       ===================================================== -->
+  <section id="jungwon-gallery" class="section gallery" aria-labelledby="jungwon-title" hidden>
+    <div class="wrap wrap-wide">
+      <h2 id="jungwon-title" class="section-title reveal">Jungwon</h2>
+      <ul id="jungwon-grid" class="gallery-grid"></ul>
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       6. RAKA GALLERY (7 foto)
+       ===================================================== -->
+  <section id="raka-gallery" class="section gallery gallery-alt" aria-labelledby="raka-title" hidden>
+    <div class="wrap wrap-wide">
+      <h2 id="raka-title" class="section-title reveal">Raka</h2>
+      <ul id="raka-grid" class="gallery-grid"></ul>
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       7. PERSONAL MESSAGE (surat / halaman buku)
+       ===================================================== -->
+  <section id="message" class="section message" aria-labelledby="message-title" hidden>
+    <div class="wrap wrap-letter">
+      <article class="letter reveal">
+        <svg class="letter-flower" aria-hidden="true"><use href="#flower" style="--petal:#fff"/></svg>
+        <h2 id="message-title" class="letter-title">Untuk Zyan</h2>
+
+        <div class="letter-body">
+          <!-- ✏️ EDIT PESAN DI SINI.
+               Satu <p> = satu paragraf. Tambah <p> baru kalau butuh paragraf lagi. -->
+          <p class="reveal">Hbd yaa cantikk, sehatt selaluu, panjangg umurnyaa, dii kelilinginn orang orang baikk, aminnn.</p>
+        </div>
+      </article>
+
+      <button id="replay-btn" class="replay" type="button">Buka dari awal</button>
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       ELEMEN GLOBAL: lightbox, curtain, efek, toast
+       ===================================================== -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Foto" inert>
+    <button id="lb-close" class="lb-btn lb-close" type="button" aria-label="Tutup foto"><svg class="ico"><use href="#i-close"/></svg></button>
+    <img id="lb-img" class="lb-img" alt="">
+    <div class="lb-bar">
+      <button id="lb-prev" class="lb-btn" type="button" aria-label="Foto sebelumnya"><svg class="ico"><use href="#i-left"/></svg></button>
+      <span id="lb-count" class="lb-count" aria-live="polite">1 / 7</span>
+      <button id="lb-next" class="lb-btn" type="button" aria-label="Foto berikutnya"><svg class="ico"><use href="#i-right"/></svg></button>
+    </div>
   </div>
 
-  <!-- ================= CAKE ================= -->
-  <section id="cake-section" class="cake-section">
-    <div class="cake-enter" id="cakeEnter">
-    <p class="section-kicker">tiup lilinnya, satu-satu</p>
-    <div class="cake-wrap">
-      <div class="cake" id="cake">
-        <div class="candle-row" id="candleRow">
-          <div class="candle" data-lit="true">
-            <div class="flame"></div>
-            <div class="wick"></div>
-            <div class="stick"></div>
-          </div>
-          <div class="candle" data-lit="true">
-            <div class="flame"></div>
-            <div class="wick"></div>
-            <div class="stick"></div>
-          </div>
-          <div class="candle" data-lit="true">
-            <div class="flame"></div>
-            <div class="wick"></div>
-            <div class="stick"></div>
-          </div>
-          <div class="candle" data-lit="true">
-            <div class="flame"></div>
-            <div class="wick"></div>
-            <div class="stick"></div>
-          </div>
-          <div class="candle" data-lit="true">
-            <div class="flame"></div>
-            <div class="wick"></div>
-            <div class="stick"></div>
-          </div>
-        </div>
-        <div class="cake-top">
-          <div class="drip"></div>
-        </div>
-        <div class="cake-middle"></div>
-        <div class="cake-bottom"></div>
-        <div class="cake-plate"></div>
-      </div>
-    </div>
-    <p class="cake-status" id="cakeStatus">sentuh setiap lilin untuk mematikannya</p>
-    </div>
-  </section>
+  <div id="curtain" class="curtain" aria-hidden="true">
+    <div class="curtain-panel curtain-left"></div>
+    <div class="curtain-panel curtain-right"></div>
+  </div>
 
-  <!-- ================= MINI SPOTIFY ================= -->
-  <section id="player-section" class="player-section">
-    <p class="section-kicker reveal">this your favorite songg</p>
+  <div id="fx" class="fx" aria-hidden="true"></div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-    <div class="player-card reveal">
-      <div class="player-top">
-        <div class="player-cover">
-          <img id="trackCover" src="assets/images/cover/cover-1.jpeg" alt="Sampul lagu">
-        </div>
-        <div class="player-meta">
-          <p class="player-title" id="trackTitle">Shout Out</p>
-          <p class="player-artist" id="trackArtist">ENHYPEN</p>
-        </div>
-      </div>
-
-      <div class="player-progress">
-        <span class="time time-current" id="curTime">0:00</span>
-        <input type="range" id="seek" class="seek" value="0" min="0" max="100" step="0.1">
-        <span class="time time-duration" id="durTime">0:00</span>
-      </div>
-
-      <div class="player-controls">
-        <button class="ctrl-btn" id="prevBtn" aria-label="Sebelumnya">
-          <svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg>
-        </button>
-        <button class="ctrl-btn play-btn" id="playBtn" aria-label="Putar">
-          <svg viewBox="0 0 24 24" id="playIcon"><path d="M8 5v14l11-7z"/></svg>
-        </button>
-        <button class="ctrl-btn" id="nextBtn" aria-label="Berikutnya">
-          <svg viewBox="0 0 24 24"><path d="M16 6h2v12h-2zM6 6l8.5 6L6 18z"/></svg>
-        </button>
-      </div>
-
-      <ul class="track-list" id="trackList">
-        <li class="track-item active" data-index="0">
-          <img src="assets/images/cover/cover-1.jpeg" alt="">
-          <div class="track-item-meta">
-            <span class="track-item-title">Shout Out</span>
-            <span class="track-item-artist">ENHYPEN</span>
-          </div>
-          <span class="track-item-icon" aria-hidden="true"></span>
-        </li>
-        <li class="track-item" data-index="1">
-          <img src="assets/images/cover/cover-2.jpeg" alt="">
-          <div class="track-item-meta">
-            <span class="track-item-title">Bite Me</span>
-            <span class="track-item-artist">ENHYPEN</span>
-          </div>
-          <span class="track-item-icon" aria-hidden="true"></span>
-        </li>
-        <li class="track-item" data-index="2">
-          <img src="assets/images/cover/cover-3.jpeg" alt="">
-          <div class="track-item-meta">
-            <span class="track-item-title">Loose</span>
-            <span class="track-item-artist">ENHYPEN</span>
-          </div>
-          <span class="track-item-icon" aria-hidden="true"></span>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- ================= GALLERY ================= -->
-  <section id="gallery-section" class="gallery-section">
-    <p class="section-kicker reveal">Gatau tapi ini pacall kamuu</p>
-    <div class="gallery-grid">
-      <figure class="gallery-item gi-1"><img src="assets/images/jungwon/jungwon-1.jpeg" alt="Jungwon" loading="lazy"></figure>
-      <figure class="gallery-item gi-2"><img src="assets/images/jungwon/jungwon-2.jpeg" alt="Jungwon" loading="lazy"></figure>
-      <figure class="gallery-item gi-3"><img src="assets/images/jungwon/jungwon-3.jpeg" alt="Jungwon" loading="lazy"></figure>
-      <figure class="gallery-item gi-4"><img src="assets/images/jungwon/jungwon-4.jpeg" alt="Jungwon" loading="lazy"></figure>
-      <figure class="gallery-item gi-5"><img src="assets/images/jungwon/jungwon-5.jpeg" alt="Jungwon" loading="lazy"></figure>
-      <figure class="gallery-item gi-6"><img src="assets/images/jungwon/jungwon-6.jpeg" alt="Jungwon" loading="lazy"></figure>
-      <figure class="gallery-item gi-7"><img src="assets/images/jungwon/jungwon-7.jpeg" alt="Jungwon" loading="lazy"></figure>
-    </div>
-  </section>
-
-  <!-- ================= UCAPAN TERAKHIR (STORYBOOK) ================= -->
-  <section id="letter-section" class="letter-section">
-    <div class="letter-page">
-      <!--
-        ================================================================
-        GANTI TEKS DI BAWAH INI DENGAN UCAPANMU SENDIRI.
-        Setiap baris <p class="letter-line"> akan muncul perlahan
-        satu per satu saat halaman ini di-scroll. Tambah/kurangi
-        baris sesuai kebutuhan, formatnya akan tetap konsisten.
-        ================================================================
-      -->
-      <p class="letter-line letter-open">Untuk Zyan,</p>
-      <p class="letter-line"> Happy birthday yaa cantikk </p>
-      <p class="letter-line"> Semoga panjang umurnya sehat selaluu </p>
-      <p class="letter-line"> dann semoga kamu tetep di kelilingi orang² baikk ya, aminn</p>
-      <p class="letter-line letter-sign">RipkyPr0d</p>
-
-      <div class="letter-divider" aria-hidden="true"></div>
-
-      <h2 class="final-greeting letter-line">Selamat ulang tahun, Zyannnnn.</h2>
-    </div>
-  </section>
-
-  <audio id="bgAudio" src="assets/music/sempurna.mp3" loop preload="auto"></audio>
-  <audio id="trackAudio" preload="auto"></audio>
-
-  <script src="js/script.js"></script>
 </body>
 </html>
